@@ -24,7 +24,7 @@ Esta aplicação front-end foi desenvolvida para funcionar em conjunto com o bac
 1. **Clone o repositório do backend**:
 
    ```bash
-   git clone
+   git clone https://github.com/leoromariz/front-controle-de-acao.git
    ```
 
 2. **Acesse o diretório do projeto backend:**:
