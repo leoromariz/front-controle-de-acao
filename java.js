@@ -4,13 +4,16 @@
   --------------------------------------------------------------------------------------
 */
 const getList = async () => {
+  const table = document.getElementById('tbody');
+  // Limpa a tabela antes de adicionar novos dados
+  table.innerHTML = '';
   let url = 'http://127.0.0.1:5000/operacoes';
   fetch(url, {
     method: 'get',
   })
     .then((response) => response.json())
     .then((data) => {
-      data.acoes.forEach(operacao => insertList(operacao.sigla_acao, operacao.quantidade, operacao.valor, operacao.tp_operacao));
+      data.operacoes.forEach(operacao => insertList(operacao.id, operacao.sigla_acao, operacao.quantidade, operacao.valor, operacao.tp_operacao));
     })
     .catch((error) => {
       console.error('Error:', error);
@@ -35,7 +38,7 @@ const postItem = async (inputSigla, inputQtd, inputValor, inputTp_operacao) => {
   formData.append('sigla_acao', inputSigla);
   formData.append('quantidade', inputQtd);
   formData.append('valor', inputValor);
-  formData.append('valor', inputTp_operacao);
+  formData.append('tp_operacao', inputTp_operacao);
 
   let url = 'http://127.0.0.1:5000/operacao';
   fetch(url, {
@@ -75,11 +78,11 @@ const removeElement = () => {
   for (i = 0; i < close.length; i++) {
     close[i].onclick = function () {
       let div = this.parentElement.parentElement;
-      const nomeOperacao = div.getElementsByTagName('td')[0].innerHTML
+      const id_operacao = div.getElementsByTagName('td')[0].innerHTML
       if (confirm("Você tem certeza?")) {
         div.remove()
-        deleteItem(nomeOperacao)
-        alert("Removido!")
+        deleteItem(id_operacao)
+        alert("Removido!" + id_operacao)
       }
     }
   }
@@ -107,20 +110,22 @@ const deleteItem = (operacao) => {
   Função para adicionar um novo item com nome, quantidade e valor 
   --------------------------------------------------------------------------------------
 */
-const newItem = () => {
+const newItem = async () => {
   let inputSigla = document.getElementById("inputSigla").value;
   let inputQtd = document.getElementById("inputQtd").value;
   let inputValor = document.getElementById("inputValor").value;
-
   let inputTp_operacao = document.getElementById("inputTp_operacao").value;
   
   if (inputSigla === '') {
-    alert("Escreva a sigla de uma ação!");
-  } else if (isNaN(inputQtd) || isNaN(inputValor)) {
+    alert("Selecione uma ação!");
+  }else if (inputTp_operacao != 'Compra' && inputTp_operacao != 'Venda') {
+    alert("Tipo de operação inválido! Use 'Compra' ou 'Venda'.");
+  } else if (isNaN(inputQtd) || isNaN(inputValor) || inputQtd <= 0 || inputValor <= 0) {
     alert("Quantidade e valor precisam ser números!");
   } else {
-    insertList(inputSigla, inputQtd, inputValor,inputTp_operacao)
-    postItem(inputSigla, inputQtd, inputValor, inputTp_operacao)
+
+    await postItem(inputSigla, inputQtd, inputValor, inputTp_operacao)
+    await getList()
     alert("Item adicionado!")
   }
 }
@@ -130,8 +135,8 @@ const newItem = () => {
   Função para inserir items na lista apresentada
   --------------------------------------------------------------------------------------
 */
-const insertList = ( sigla, qtd, valor,td_operacao) => {
-  var ordem = [ sigla, qtd, valor, td_operacao];
+const insertList = ( id, sigla, qtd, valor, tp_operacao) => {
+  var ordem = [id, sigla, qtd, valor, tp_operacao];
   var table = document.getElementById('tbody');
   var row = table.insertRow();
 
@@ -144,8 +149,8 @@ const insertList = ( sigla, qtd, valor,td_operacao) => {
   document.getElementById("inputQtd").value = "";
   document.getElementById("inputValor").value = "";
   document.getElementById("inputTp_operacao").value = "";
-
-  removeElement();
+  
+  removeElement()
 }
 
 

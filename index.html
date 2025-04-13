@@ -14,7 +14,7 @@
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
     <link href="./bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>	
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
 
 </head>
@@ -51,11 +51,11 @@
                             sua carteira de ações para organizar seus investimentos e visualizar seu saldo diário para
                             monitorar o desempenho das suas ações. A plataforma é fácil de usar e estamos aqui para
                             ajudar você a alcançar seus objetivos financeiros. Boas negociações!</p>
-                        
-                        <a href="#carteira" class="btn btn-info link-a-1"> Sua Carteira</a>
-                        <a href="#carteira" class="btn btn-info link-a-2"> Cadastrar ordem</a>
 
-                    </section >
+                        <a href="#carteira" class="btn btn-info link-a-1"> Sua Carteira</a>
+                        <a href="#ordem" class="btn btn-info link-a-2"> Cadastrar ordem</a>
+
+                    </section>
                 </div>
                 <div class="col">
                     <section class="secao-2">
@@ -68,103 +68,139 @@
             </div>
         </div>
 
-        
+
         <!-- Formulário de pesquisa de ativo -->
         <div class="container text-center" id="busca">
-            <h1 class="span-1">Busca detalhada de Ação</h1>
+            <h1 class="span-1">Busca detalhada de Ação</h1> 
             <div id="search">
                 <form class="d-flex" action="" method="POST" id="myForm">
                     <input class="form-control me-2 input-width" type="search" id="txtSymbol" placeholder="PETR4" aria-label="Search">
                     <button class="btn btn-info link-a-1" type="button" onclick="validar()">Pesquisar</button>
-                  </form>		
+                </form>
             </div>
-			
-		</div>
-		
-		<!-- Informações sobre erros -->
-		<div id="error">
-			Deu erro!
-		</div>
 
-		<!-- Exibição dos dados -->
-		<div id="wrapper">
-			<div id="table" class="table-div">
-				<table id="series-table" class="table">
-				  <thead>
-					<tr class="table-primary">			  
-					  <th scope="col">Data</th>
-					  <th scope="col">Abertura</th>
-					  <th scope="col">Fechamento</th>
-					</tr>
-				  </thead>
-				  <tbody></tbody>
-				</table>	
-			</div>
-			
-			<div id="chart-column" class="column-chart"></div>
-		</div>
-		
-		<div class="col-md-12">
-		<div id="chart-line" class="line-chart"></div>
-		</div>		
-	</div>
+        </div>
 
-    
+        <!-- Informações sobre erros -->
+        <div id="error">
+            Deu erro!
+        </div>
 
-        <!-- Criando a tabela da Carteira -->
+        <!-- Exibição dos dados -->
+        <div id="wrapper">
+            <div id="table" class="table-div">
+                <table id="series-table" class="table">
+                    <thead>
+                        <tr class="table-primary">
+                            <th scope="col">Data</th>
+                            <th scope="col">Abertura</th>
+                            <th scope="col">Fechamento</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+
+            <div id="chart-column" class="column-chart"></div>
+        </div>
+
+        <div class="col-md-12">
+            <div id="chart-line" class="line-chart"></div>
+        </div>
+        </div>
+
+
+
+        <!-- Criando a tabela de Ordem -->
         <div class="container text-center" id="ordem">
 
             <h1 class="span-1">Cadastro de ordem</h1>
 
-                <!-- Opções para adicionar um novo item -->
-                <section class="newItem">
-                    <div class="input-group mb-3">
-                        <label class="input-group-text" for="inputGroupSelect01">Sigla da ação</label>
-                        <select class="form-select" id="inputSigla">
-                          <option selected>PETR4</option>
-                          <option value="1">PRIO3</option>
-                          <option value="2">VALE3</option>
-                          <option value="3">BBDC4</option>
-                        </select>
-                    </div>
-                    <div class="input-group mb-3">
-                        <label class="input-group-text" for="inputGroupSelect01">Tipo da operação</label>
-                        <select class="form-select" id="inputTp_operacao">
-                          <option selected>Selecione...</option>
-                          <option value="1">Compra</option>
-                          <option value="2">Venda</option>
-                        </select>
-                    </div>
+            <!-- Opções para adicionar um novo item -->
+            <section class="newItem">
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="inputGroupSelect01">Sigla da ação</label>
+                    <select class="form-select" id="inputSigla">
+                        <option selected value="">Selecione...</option>
+                        <option value="PRIO3">PRIO3</option>
+                        <option value="VALE3">VALE3</option>
+                        <option value="BBDC4">BBDC4</option>
+                        <option value="ITUB4">ITUB4</option>
+                        <option value="PETR4">PETR4</option>
+                        <option value="MGLU3">MGLU3</option>
+                        <option value="LREN3">LREN3</option>
+                        <option value="AMER3">AMER3</option>
+                        <option value="B3SA3">B3SA3</option>
+                        <option value="ABEV3">ABEV3</option>
+                        <option value="BBAS3">BBAS3</option>
+                        <option value="GGBR4">GGBR4</option>
+                        <option value="JBSS3">JBSS3</option>
+                        <option value="CSAN3">CSAN3</option>
+                        <option value="RENT3">RENT3</option>
+                        <option value="BRFS3">BRFS3</option>
+                        <option value="LAME4">LAME4</option>
+                        <option value="WEGE3">WEGE3</option>
+                        <option value="KLBN11">KLBN11</option>
+                        <option value="USIM5">USIM5</option>
+                        <option value="BRKM5">BRKM5</option>
+                        <option value="MRFG3">MRFG3</option>
+                        <option value="CVCB3">CVCB3</option>
+                        <option value="SBSP3">SBSP3</option>
+                        <option value="LIGT3">LIGT3</option>
+                        <option value="MULT3">MULT3</option>
+                        <option value="VIVT3">VIVT3</option>
+                        <option value="TOTS3">TOTS3</option>
+                        <option value="PSSA3">PSSA3</option>
+                        <option value="MRVE3">MRVE3</option>
+                        <option value="CYRE3">CYRE3</option>
+                        <option value="HYPE3">HYPE3</option>
+                        <option value="LREN3">LREN3</option>
+                        <option value="NTCO3">NTCO3</option>
+                        <option value="B3SA3">B3SA3</option>
+                    </select>
+                </div>
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="inputGroupSelect01">Tipo da operação</label>
+                    <select class="form-select" id="inputTp_operacao">
+                        <option selected>Selecione...</option>
+                        <option value="Compra">Compra</option>
+                        <option value="Venda">Venda</option>
+                    </select>
+                </div>
 
-                    
-                    <div class="input-group mb-3">
-                        <span class="input-group-text">Valor</span>
-                        <span class="input-group-text">R$</span>
-                        <input type="text" class="form-control" id="inputValor" aria-label="Dollar amount (with dot and two decimal places)">
-                    </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Valor</span>
+                    <span class="input-group-text">R$</span>
+                    <input type="text" class="form-control" id="inputValor"
+                        aria-label="Dollar amount (with dot and two decimal places)">
+                </div>
 
 
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" >Quantidade</span>
-                        <input type="text" class="form-control" id="inputQtd" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-                    </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Quantidade</span>
+                    <input type="text" class="form-control" id="inputQtd" aria-label="Sizing example input"
+                        aria-describedby="inputGroup-sizing-default">
+                </div>
 
-                    <button onclick="newItem()" class="btn btn-info link-a-1">Adicionar</button>
-                </section>
-            </div>
+                <button onclick="newItem()" class="btn btn-info link-a-1">Adicionar</button>
+            </section>
+        </div>
 
-                <!-- Definindo colunas a tabela -->
-                <br><br>
-        <div class="container text-center" id="ordem">
+        <!-- Definindo colunas a tabela -->
+        <br><br>
+        <div class="container text-center" id="carteira">
             <h1 class="span-1">Sua carteira</h1>
-                <table class="table table-hover">
+            <table class="table table-hover">
                 <thead>
                     <tr>
+                        <th scope="col">ID</th>
                         <th scope="col">Sigla</th>
                         <th scope="col">Quantidade</th>
                         <th scope="col">Valor</th>
                         <th scope="col">Tipo de operação</th>
-                        <th><img src="https://cdn-icons-png.flaticon.com/512/126/126468.png" width="15px" height="15px"></th>
+                        <th><img src="https://cdn-icons-png.flaticon.com/512/126/126468.png" width="15px" height="15px">
+                        </th>
                     </tr>
                 </thead>
                 <!-- Inserindo valor a tabela -->
